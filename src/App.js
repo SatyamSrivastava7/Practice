@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get("s");
+  const [searchQuery, setSearchQuery] = useState(query);
+  //const filteredPosts = filterPosts(posts, searchQuery);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Link to="/">Home</Link>
+        <Link to="/menu">Menu</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/shop">Shop</Link>
+
+        <search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      </div>
+    </Router>
   );
 }
 
